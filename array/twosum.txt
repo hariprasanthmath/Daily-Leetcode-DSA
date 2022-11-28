@@ -1,0 +1,19 @@
+https://leetcode.com/problems/two-sum/description/
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] answer = new int[2];
+        HashMap<Integer,Integer> number_indexmap = new HashMap<>();
+        for(int index=0;index<nums.length;index++){
+           if(number_indexmap.containsKey(target-nums[index])){
+               answer[0] = number_indexmap.get(target-nums[index]);
+               answer[1] = index;
+               return answer;
+           }else{
+               number_indexmap.put(nums[index],index);
+           }
+        }
+        return answer;
+    }
+    
+}
