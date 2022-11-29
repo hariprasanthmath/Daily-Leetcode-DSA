@@ -1,0 +1,32 @@
+longest-prefix:
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        // char[] chararr = new char[strs[0].length()];
+        // for(int index=0;index<strs[0].length()-1;index++){
+        //       chararr[index] = strs[0].charAt(index);
+        // }
+        String answer = strs[0];
+        for(int item=1;item<strs.length;item++){
+            int itemlength = strs[item].length();
+            String temporary = "";
+            if(itemlength == 0){
+                return "";
+            }else{
+                for(int index=0;index<itemlength && index<answer.length();index++){
+                if(answer.charAt(index) == strs[item].charAt(index)){
+                      temporary = temporary + strs[item].charAt(index);
+                      
+                      if(index == itemlength-1){
+                           answer = "" + temporary;
+                      }
+                }else{
+                    answer = "" + temporary;
+                    break;
+                }
+            }
+            }
+        }
+        return answer;
+    }
+}
