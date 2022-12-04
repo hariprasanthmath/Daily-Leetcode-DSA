@@ -1,0 +1,47 @@
+https://leetcode.com/problems/unique-paths/submissions/854452939/
+
+
+class Solution {
+    public int uniquePaths(int m, int n) {
+        if(m == 1 || n == 1){ // if a row or column is 1 there is only one possible route
+            return 1;
+        }
+       
+       // array to store possibility at tht respective index
+        int[][] numberOfWaysatIndex = new int[m][n];
+        for(int[] array : numberOfWaysatIndex){
+            Arrays.fill(array,-1);
+        }
+       
+        // at last index we already reached so the possibility is 0
+        numberOfWaysatIndex[m-1][n-1] = 0;
+
+       // at the last row , last -1 column the possiblitity is one
+        numberOfWaysatIndex[m-1][n-2] = 1;
+
+      // at the last column , last -1 row the possibility is one
+        numberOfWaysatIndex[m-2][n-1] = 1;
+        
+        return RecursiveSolution(0,0,numberOfWaysatIndex);
+    }
+    public static int RecursiveSolution(int row, int column, int[][] numberOfWaysatIndex){
+
+       // if the index of row and column is more that bound we return that POSSIBILITY as 0
+         if(row >= numberOfWaysatIndex.length || column >= numberOfWaysatIndex[0].length){
+              return 0;
+         }
+
+      //  when we reach last index we return // this is optional
+         if(row == numberOfWaysatIndex.length-1 && column == numberOfWaysatIndex[0].length-1){
+             return 0;
+         }
+          
+      // checking if the possibility of that index is present or not
+          if(numberOfWaysatIndex[row][column] != -1){
+               return numberOfWaysatIndex[row][column];
+          }
+  
+     // we are recursively checking the possibilty at thatb index by moving one step right or down
+          return numberOfWaysatIndex[row][column] = RecursiveSolution(row+1,column,numberOfWaysatIndex) + RecursiveSolution(row,column+1,numberOfWaysatIndex);
+    }
+}
