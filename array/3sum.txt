@@ -1,0 +1,33 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        int sum = 0;
+         List<List<Integer>> resultlist = new ArrayList<>();
+         HashMap<List<Integer>,Integer> listmap = new HashMap<>();
+        
+        
+         for(int first=0;first<nums.length-2;first++){
+              HashMap<Integer,Integer> index_val = new HashMap<>();
+              int currentSum = sum - nums[first]; // 1
+             for(int second=first+1;second<nums.length; second++){
+               //  for(int third=0 ;third<nums.length; third++){
+                   //first!=second && first!=third && second!=third && nums[first]+nums[second]+nums[third]==0
+                     if(index_val.containsKey(currentSum-nums[second])){ // 1 - 0 // 1 - 1 = 0
+              List<Integer> triplets = new ArrayList<>();
+              triplets.add(nums[first]);
+              triplets.add(nums[second]);
+              triplets.add(currentSum-nums[second]);
+              Collections.sort(triplets);
+              if(!listmap.containsKey(triplets)){
+                  listmap.put(triplets,1);
+                   resultlist.add(triplets);
+
+              }
+             
+                     }
+                     index_val.put(nums[second],1); // add 0
+                // }
+             }
+         }
+         return resultlist;
+    }
+}
