@@ -11,24 +11,10 @@ class Solution {
         return count;
     }
     public static boolean twoStringCompare(String strone, String strtwo){
-        HashMap<Character,Integer> Hmap = new HashMap<>();
-        for(int index=0;index<strone.length();index++){
-            Hmap.put(strone.charAt(index),1);
-        }
-        for(int index=0;index<strtwo.length();index++){
-            if(!Hmap.containsKey(strtwo.charAt(index))){
-                return false;
-            }
-        }
-        HashMap<Character,Integer> Hmap2 = new HashMap<>();
-        for(int index=0;index<strtwo.length();index++){
-            Hmap2.put(strtwo.charAt(index),1);
-        }
-        for(int index=0;index<strone.length();index++){
-            if(!Hmap2.containsKey(strone.charAt(index))){
-                return false;
-            }
-        }
-               return true;
+        Set set1 = new HashSet<>();
+        for(char value: strone.toCharArray()) set1.add(value);
+        Set set2 = new HashSet<>();
+        for(char value: strtwo.toCharArray()) set2.add(value);
+        return set1.equals(set2);
     }
 }
