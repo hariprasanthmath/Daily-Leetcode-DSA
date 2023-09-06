@@ -1,1 +1,24 @@
-
+// wrong solutioon
+class Solution {
+    public int longestValidParentheses(String s) {
+        int lastInvalidIndex = -1;
+        int maxLength = 0;
+        int strLength = s.length();
+        Stack<Integer> lastOpenIndex = new Stack<>();
+        for(int index=0; index<strLength; index++){
+            if(s.charAt(index) == '('){
+                lastOpenIndex.push(index);
+            }else if(lastOpenIndex.isEmpty()){
+                lastInvalidIndex = index;
+            }else{
+                lastOpenIndex.pop();
+                if(lastOpenIndex.isEmpty()){
+                    maxLength = Math.max(maxLength, index-lastInvalidIndex);
+                }else{
+                    maxLength = Math.max(maxLength, index-lastOpenIndex.pop());
+                }
+            }
+        }
+        return maxLength;
+    }
+}
