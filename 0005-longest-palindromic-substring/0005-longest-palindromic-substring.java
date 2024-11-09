@@ -23,7 +23,7 @@ class Solution {
                 right++;
             }
                 
-          
+        
                 
                  left = index;
                  right = index+1;
