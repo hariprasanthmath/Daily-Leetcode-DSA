@@ -15,3 +15,27 @@ class Solution {
         return maxstorage;
     }
 }
+
+class Solution2 {
+    public int maxArea(int[] height) {
+
+        int left = 0;
+        int right = height.length-1;
+
+        int maxResult = Integer.MIN_VALUE;
+
+        while(right > left){
+            int currentMin = Math.min(height[left] , height[right]);
+            int difference = right - left;
+            maxResult = Math.max(maxResult, difference * currentMin);
+            if(height[left] >= height[right]){
+                right--;
+            }else{
+                left++;
+            }
+
+        }
+
+        return maxResult; 
+    }
+}
